@@ -1,0 +1,71 @@
+%% ---------------------------------------------------------------------------
+%% Copyright 2016 Benoit Viguier
+%%
+%% https://gitlab.science.ru.nl/benoit/rutheme
+%%
+%% the original template was based on the mtheme
+%% (https://github.com/matze/mtheme) by Matthias Vogelgesang
+%%
+%% This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
+%% International License (https://creativecommons.org/licenses/by-sa/4.0/).
+%% ---------------------------------------------------------------------------
+
+\input{docstrip.tex}
+\keepsilent
+\askforoverwritefalse
+\usedir{tex/latex/rutheme}
+
+\preamble
+---------------------------------------------------------------------------
+Copyright 2016 Benoit Viguier
+
+https://gitlab.science.ru.nl/benoit/rutheme
+
+the original template was based on the mtheme
+(https://github.com/matze/mtheme) by Matthias Vogelgesang
+
+This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
+International License (https://creativecommons.org/licenses/by-sa/4.0/).
+---------------------------------------------------------------------------
+\endpreamble
+
+\generate{\file{beamerthemeru.sty}{%
+          \from{beamerthemeru.dtx}{package}}
+          }
+\generate{\file{beamerinnerthemeru.sty}{%
+          \from{beamerinnerthemeru.dtx}{package}}
+          }
+\generate{\file{beamerouterthemeru.sty}{%
+          \from{beamerouterthemeru.dtx}{package}}
+          }
+\generate{\file{beamerfontthemeru.sty}{%
+          \from{beamerfontthemeru.dtx}{package}}
+          }
+\generate{\file{beamercolorthemeru.sty}{%
+          \from{beamercolorthemeru.dtx}{package}}
+          }
+\generate{\file{pgfplotsthemetol.sty}{%
+          \from{pgfplotsthemetol.dtx}{package}}
+          }
+
+\obeyspaces
+\Msg{**************************************************************}
+\Msg{*                                                            *}
+\Msg{* To finish the installation you have to move the following  *}
+\Msg{* files into a directory searched by TeX:                    *}
+\Msg{*                                                            *}
+\Msg{*        beamerthemeru.sty                                   *}
+\Msg{*        beamerinnerthemeru.sty                              *}
+\Msg{*        beamerouterthemeru.sty                              *}
+\Msg{*        beamerfontthemeru.sty                               *}
+\Msg{*        beamercolorthemeru.sty                              *}
+\Msg{*        pgfplotsthemetol.sty                                *}
+\Msg{*                                                            *}
+\Msg{* To produce the documentation run the file ru.dtx           *}
+\Msg{* through LaTeX.                                             *}
+\Msg{*                                                            *}
+\Msg{* Happy TeXing!                                              *}
+\Msg{*                                                            *}
+\Msg{**************************************************************}
+
+\endbatchfile

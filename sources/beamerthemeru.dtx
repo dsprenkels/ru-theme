@@ -1,0 +1,210 @@
+% \iffalse meta-comment -------------------------------------------------------
+% Copyright 2016 Benoit Viguier
+%
+% https://gitlab.science.ru.nl/benoit/rutheme
+%
+% the original template was based on the mtheme
+% (https://github.com/matze/mtheme) by Matthias Vogelgesang
+%
+% This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
+% International License (https://creativecommons.org/licenses/by-sa/4.0/).
+% ------------------------------------------------------------------------- \fi
+% \iffalse
+%<*package>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeru}
+  [2016/11/22 v0.1 Ru Beamer theme]
+%</package>
+% \fi
+% \CheckSum{0}
+% \StopEventually{}
+% \iffalse
+%<*package>
+% ------------------------------------------------------------------------- \fi
+%
+% \subsection{\themename parent theme}
+%
+% The primary job of this package is to load the component sub-packages of the
+% \themename theme and route the theme options accordingly. It also
+% provides some custom commands and environments for the user.
+%
+%
+%
+% \subsubsection{Package dependencies}
+%
+%    \begin{macrocode}
+\RequirePackage{etoolbox}
+\RequirePackage{pgfopts}
+%    \end{macrocode}
+%
+%
+%
+% \subsubsection{Options}
+%
+% Most options are passed off to the component sub-packages.
+%
+%    \begin{macrocode}
+\pgfkeys{/ru/.cd,
+  .search also={
+    /ru/inner,
+    /ru/outer,
+    /ru/color,
+    /ru/font,
+  }
+}
+%    \end{macrocode}
+%
+% \begin{macro}{titleformat plain}
+%    Controls the formatting of the text on standout ``plain'' frames.
+%    \begin{macrocode}
+\pgfkeys{
+  /ru/titleformat plain/.cd,
+    .is choice,
+    regular/.code={%
+      \let\ru@plaintitleformat\@empty%
+      \setbeamerfont{standout}{shape=\normalfont}%
+    },
+    smallcaps/.code={%
+      \let\ru@plaintitleformat\@empty%
+      \setbeamerfont{standout}{shape=\scshape}%
+    },
+    allsmallcaps/.code={%
+      \let\ru@plaintitleformat\MakeLowercase%
+      \setbeamerfont{standout}{shape=\scshape}%
+      \PackageWarning{beamerthemeru}{%
+        Be aware that titleformat plain=allsmallcaps can lead to problems%
+      }
+    },
+    allcaps/.code={%
+      \let\ru@plaintitleformat\MakeUppercase%
+      \setbeamerfont{standout}{shape=\normalfont}%
+      \PackageWarning{beamerthemeru}{%
+        Be aware that titleformat plain=allcaps can lead to problems%
+      }
+    },
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{titleformat}
+%    Sets a standard format for titles, subtitles, section titles, frame
+%    titles, and the text on standout ``plain'' frames.
+%    \begin{macrocode}
+\pgfkeys{
+  /ru/titleformat/.code=\pgfkeysalso{
+      font/titleformat title=#1,
+      font/titleformat subtitle=#1,
+      font/titleformat section=#1,
+      font/titleformat frame=#1,
+      titleformat plain=#1,
+    }
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% For backwards compatibility with earlier betas of the theme, we implement
+% deprecated option names as aliases to the corresponding |key=value| options.
+%
+%    \begin{macrocode}
+\pgfkeys{/ru/.cd,
+  usetitleprogressbar/.code=\pgfkeysalso{outer/progressbar=frametitle},
+  noslidenumbers/.code=\pgfkeysalso{outer/numbering=none},
+  usetotalslideindicator/.code=\pgfkeysalso{outer/numbering=fraction},
+  nosectionslide/.code=\pgfkeysalso{inner/sectionpage=none},
+  darkcolors/.code=\pgfkeysalso{color/background=dark},
+  blockbg/.code=\pgfkeysalso{color/block=fill, inner/block=fill},
+}
+%    \end{macrocode}
+%
+% Set default values for options.
+%
+%    \begin{macrocode}
+\newcommand{\ru@setdefaults}{
+  \pgfkeys{/ru/.cd,
+    titleformat plain=regular,
+  }
+}
+%    \end{macrocode}
+%
+%
+%
+% \subsubsection{Component sub-packages}
+%
+% Having processed the options, we can now load the component sub-packages of
+% the theme.
+%
+%    \begin{macrocode}
+\useinnertheme{ru}
+\useoutertheme{ru}
+\usecolortheme{ru}
+\usefonttheme{ru}
+%    \end{macrocode}
+%
+% The |tol| theme for |pgfplots| is only loaded if |pgfplots| is used.
+%
+%    \begin{macrocode}
+\AtEndPreamble{%
+  \@ifpackageloaded{pgfplots}{%
+    \RequirePackage{pgfplotsthemetol}
+  }{}
+}
+%    \end{macrocode}
+%
+%
+%
+% \subsubsection{Custom commands}
+%
+% The parent theme defines custom commands as their proper usage may depend
+% on multiple sub-packages.
+%
+% \begin{macro}{\ruset}
+%    Allows the user to change options midway through a presentation.
+%    \begin{macrocode}
+\newcommand{\ruset}[1]{\pgfkeys{/ru/.cd,#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\plain}
+%   Creates a plain frame with dark background, suitable for displaying images
+%   or a few words. The format of the text can be set with the
+%   |titleformat plain| option.
+%    \begin{macrocode}
+\def\ru@plaintitleformat#1{#1}
+\newcommand{\plain}[2][]{%
+  \PackageWarning{beamerthemeru}{%
+    The syntax `\plain' may be deprecated in a future version of Metropolis.
+    Please use a frame with [standout] instead.
+  }
+  \begin{frame}[standout]{#1}
+    \ru@plaintitleformat{#2}
+  \end{frame}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\rureducelistspacing}
+%    \begin{macrocode}
+\newcommand{\rureducelistspacing}{\vspace{-\topsep}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
+% \subsubsection{Process package options}
+%
+%    \begin{macrocode}
+\ru@setdefaults
+
+\pgfdeclareimage[width=\paperwidth,height=\paperheight]{bg}{ru_background.png}
+\setbeamertemplate{background}{\pgfuseimage{bg}}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{old-logo.png}}
+\titlegraphic{\hfill\includegraphics[height=1cm]{logo.png}}
+
+\ProcessPgfOptions{/ru}
+%    \end{macrocode}
+%
+% \iffalse
+%</package>
+% \fi
+% \Finale
+\endinput
