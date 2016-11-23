@@ -23,7 +23,7 @@ of your TeX distribution. Ru is on [CTAN][] since December
 Installing Ru from source, like any Beamer theme, involves four easy
 steps:
 
-1. **Download the source** with a `git clone` of the [Ru repository](https://gitlab.science.ru.nl/benoit/rutheme) or as a [zip archive](https://gitlab.science.ru.nl/benoit/rutheme/archive/master.zip) of the latest development version.
+1. **Download the source** with a `git clone` of the [Ru repository](https://gitlab.science.ru.nl/benoit/rutheme) or as a [zip archive](https://gitlab.science.ru.nl/benoit/rutheme/repository/archive.zip?ref=master) of the latest development version.
 
 2. **Compile the style files** by running `make sty` inside the downloaded
     directory. (Or run LaTeX directly on `source/rutheme.ins`.)
