@@ -4,7 +4,7 @@
 **IMPORTANT NOTICES FOR VERSION 1.0**
 
 * The `title format` values have been restructured. Please refer to the
-  [manual][].
+  [manual][2].
 
 ---
 
@@ -12,7 +12,9 @@ Ru is a simple, modern Beamer theme suitable for anyone to use. It tries
 to minimize noise and maximize space for content; the only visual flourish it
 offers is an (optional) progress bar added to each slide. .
 
-Not convinced? Have a look at the [demo slides][].
+Not convinced? Have a look at the [demo slides][1].
+
+![Sample](https://gitlab.science.ru.nl/benoit/rutheme/raw/master/pdf/demo.png)
 
 ## Installation
 
@@ -23,7 +25,7 @@ of your TeX distribution. Ru is on [CTAN][] since December
 Installing Ru from source, like any Beamer theme, involves four easy
 steps:
 
-1. **Download the source** with a `git clone` of the [Ru repository](https://gitlab.science.ru.nl/benoit/rutheme) or as a [zip archive](https://gitlab.science.ru.nl/benoit/rutheme/repository/archive.zip?ref=master) of the latest development version.
+1. **Download the source** with a `git clone` of the [Ru repository][3] or as a [zip archive][4] of the latest development version.
 
 2. **Compile the style files** by running `make sty` inside the downloaded
     directory. (Or run LaTeX directly on `source/rutheme.ins`.)
@@ -58,18 +60,21 @@ Ru.
 \end{document}
 ```
 
-Detailed information on using Ru can be found in the [manual][].
+Detailed information on using Ru can be found in the [manual][2].
 
 
 ## License
 
 The theme itself is licensed under a [Creative Commons Attribution-ShareAlike
-4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). This
+4.0 International License][5]. This
 means that if you change the theme and re-distribute it, you *must* retain the
 copyright notice header and license it under the same CC-BY-SA license. This
 does not affect the presentation that you create with the theme.
 
 
-<!-- [demo slides]: http://mirrors.ctan.org/macros/latex/contrib/beamer-contrib/themes/metropolis/demo/demo.pdf
-[manual]: http://mirrors.ctan.org/macros/latex/contrib/beamer-contrib/themes/metropolis/doc/metropolistheme.pdf
-[CTAN]: http://ctan.org/pkg/beamertheme-metropolis -->
+[1]: https://gitlab.science.ru.nl/benoit/rutheme/blob/master/pdf/demo.pdf
+[2]: https://gitlab.science.ru.nl/benoit/rutheme/blob/master/pdf/rutheme.pdf
+[3]: https://gitlab.science.ru.nl/benoit/rutheme
+[4]: https://gitlab.science.ru.nl/benoit/rutheme/repository/archive.zip?ref=master
+[5]: http://creativecommons.org/licenses/by-sa/4.0/
+<!-- [CTAN]: http://ctan.org/pkg/beamertheme-metropolis -->
