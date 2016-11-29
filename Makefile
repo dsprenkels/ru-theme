@@ -35,7 +35,7 @@ install: $(PACKAGE_STY) $(DOC_PDF)
 	@mkdir -p $(INSTALL_DIR)
 	@cp $(PACKAGE_STY) $(INSTALL_DIR)
 	@cp ru_background.png $(INSTALL_DIR)
-	@cp logo.png $(INSTALL_DIR)
+	@cp ru_logo.png $(INSTALL_DIR)
 	@mkdir -p $(DOC_DIR)
 	@cp $(DOC_PDF) $(DOC_DIR)
 
