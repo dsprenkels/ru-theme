@@ -475,9 +475,74 @@
 % \subsubsection{Lists and floats}
 %
 %    \begin{macrocode}
-\setbeamertemplate{itemize items}{\textbullet}
-\setbeamertemplate{caption label separator}{: }
-\setbeamertemplate{caption}[numbered]
+
+%%% MODIFIED 01/02/2017
+
+% \setbeamertemplate{itemize items}{\textbullet}
+% \setbeamertemplate{caption label separator}{: }
+% \setbeamertemplate{caption}[numbered]
+
+%%% Itemisation stuff
+%%% adapted by Bart
+\setbeamertemplate{itemize item}{\color{gray}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{purple}$\bullet$}
+%\setbeamertemplate{itemize item}[circle]
+%\setbeamertemplate{itemize subitem}{--}
+\setbeamertemplate{itemize subsubitem}[triangle]
+
+\setbeamertemplate{itemize/enumerate body begin}
+  {\normalsize\renewcommand\theenumii{\theenumi\alph{enumii}}}
+\setbeamertemplate{itemize/enumerate subbody begin}{\normalsize}
+\setbeamertemplate{itemize/enumerate subsubbody begin}{\normalsize}
+\setbeamertemplate{itemize/enumerate subsubsubbody begin}{\normalsize}
+
+\setbeamertemplate{enumerate item}{\color{gray}(\insertenumlabel)}
+\setbeamertemplate{enumerate subitem}{\color{purple}(\alph{enumii})}
+
+% \renewcommand{\itemize}[1][]{%
+%   \beamer@ifempty{#1}{}{\def\beamer@defaultospec{#1}}%
+%   \ifnum \@itemdepth >2\relax\@toodeep\else
+%     \advance\@itemdepth\@ne
+%     \beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+%     \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+%     \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+%     \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+%     \list
+%       {\usebeamertemplate{itemize \beameritemnestingprefix item}}
+%       {%
+%           \ifbeamer@official
+%             \setlength\itemsep{0pt}%
+%             \setlength\topsep{0pt}%
+%             \setlength\partopsep{0pt}%
+%             \setlength\parsep{0pt}%
+%             \setlength\parskip{0pt}%
+%             \ifthenelse{\equal{\dept}{none}}{%
+%               \setlength\leftmargini{1em}%
+%               \setlength\leftmarginii{0.5em}%
+%               \setlength\leftmarginiii{0.5em}%
+%               \setlength\labelsep{0.25em}%
+%               \setlength\labelwidth{0.6em}%
+%             }{%
+%               \setlength\labelsep{10pt}%
+%               \setlength\labelwidth{7pt}%
+%               \setlength\leftmargin{18pt}%
+%             }%
+%           \else%
+%             \relax%
+%           \fi%
+%           \def\makelabel##1{%
+%           {%
+%                 \usebeamerfont*{itemize \beameritemnestingprefix item}%
+%                 \usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1\hfill%
+%           }%
+%         }%
+%       }
+%   \fi%
+%   \beamer@cramped%
+%   \raggedright%
+%   \beamer@firstlineitemizeunskip%
+% }
+
 %    \end{macrocode}
 %
 %
