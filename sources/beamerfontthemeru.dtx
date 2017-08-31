@@ -12,7 +12,7 @@
 % \iffalse
 %<*package>
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerfontthemeru}[2016/11/22 Ru font theme]
+\ProvidesPackage{beamerfontthemeru}[2017/01/23 Ru font theme]
 %</package>
 % \fi
 % \CheckSum{0}
@@ -356,29 +356,49 @@
   {\def\inserttitle{#2}}%
   {\def\inserttitle{\ru@titleformat{#2}}}%
   {}%
-  {\PackageError{beamerfontthemeru}{Patching title failed}}
+  {\PackageError{beamerfontthemeru}{Patching title failed}\@ehc}
 \patchcmd{\beamer@subtitle}%
   {\def\insertsubtitle{#2}}%
   {\def\insertsubtitle{\ru@subtitleformat{#2}}}%
   {}%
-  {\PackageError{beamerfontthemeru}{Patching subtitle failed}}
+  {\PackageError{beamerfontthemeru}{Patching subtitle failed}\@ehc}
 \patchcmd{\sectionentry}
   {\def\insertsectionhead{#2}}
   {\def\insertsectionhead{\ru@sectiontitleformat{#2}}}
   {}
-  {\PackageError{beamerfontthemeru}{Patching section title failed}}
+  {\PackageError{beamerfontthemeru}{Patching section title failed}\@ehc}
+\@tempswafalse
 \patchcmd{\beamer@section}
   {\def\insertsectionhead{\hyperlink{Navigation\the\c@page}{#1}}}
   {\def\insertsectionhead{\hyperlink{Navigation\the\c@page}{%
     \ru@sectiontitleformat{#1}}}}
+  {\@tempswatrue}
   {}
-  {\PackageError{beamerfontthemeru}{Patching section title failed}}
+\patchcmd{\beamer@section}
+  {\protected@edef\insertsectionhead{\noexpand\hyperlink{Navigation\the\c@page}{#1}}}
+  {\protected@edef\insertsectionhead{\noexpand\hyperlink{Navigation\the\c@page}{%
+    \noexpand\ru@sectiontitleformat{#1}}}}
+  {\@tempswatrue}
+  {}
+\if@tempswa\else
+  \PackageError{beamerfontthemeru}{Patching section title failed}\@ehc
+\fi
+\@tempswafalse
 \patchcmd{\beamer@subsection}
   {\def\insertsubsectionhead{\hyperlink{Navigation\the\c@page}{#1}}}
   {\def\insertsubsectionhead{\hyperlink{Navigation\the\c@page}{%
     \ru@sectiontitleformat{#1}}}}
+  {\@tempswatrue}
   {}
-  {\PackageError{beamerfontthemeru}{Patching section title failed}}
+\patchcmd{\beamer@subsection}
+  {\protected@edef\insertsubsectionhead{\noexpand\hyperlink{Navigation\the\c@page}{#1}}}
+  {\protected@edef\insertsubsectionhead{\noexpand\hyperlink{Navigation\the\c@page}{%
+    \noexpand\ru@sectiontitleformat{#1}}}}
+  {\@tempswatrue}
+  {}
+\if@tempswa\else
+  \PackageError{beamerfontthemeru}{Patching section title failed}\@ehc
+\fi
 %    \end{macrocode}
 %
 % Similarly, to make the |\MakeLowercase| and |\MakeUppercase| macros work in
@@ -386,13 +406,13 @@
 %
 %    \begin{macrocode}
 \patchcmd{\beamer@@frametitle}
-  {\beamer@ifempty{#2}{}{%
+  {{%
       \gdef\insertframetitle{{#2\ifnum\beamer@autobreakcount>0\relax{}\space%
       \usebeamertemplate*{frametitle continuation}\fi}}%
     \gdef\beamer@frametitle{#2}%
     \gdef\beamer@shortframetitle{#1}%
     }}
-  {\beamer@ifempty{#2}{}{%
+  {{%
       \gdef\insertframetitle{{\ru@frametitleformat{#2}\ifnum%
       \beamer@autobreakcount>0\relax{}\space%
       \usebeamertemplate*{frametitle continuation}\fi}}%
@@ -400,7 +420,7 @@
     \gdef\beamer@shortframetitle{#1}%
     }}
   {}
-  {\PackageError{beamerfontthemeru}{Patching frame title failed}}
+  {\PackageError{beamerfontthemeru}{Patching frame title failed}\@ehc}
 %    \end{macrocode}
 %
 %
