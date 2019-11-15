@@ -195,8 +195,13 @@
 %    \begin{macrocode}
 \ru@setdefaults
 
-\pgfdeclareimage[width=\paperwidth,height=\paperheight]{bg}{ru_background.png}
-\setbeamertemplate{background}{\pgfuseimage{bg}}
+\pgfdeclareimage[height=\paperheight]{bg}{ru_background.png}
+\setbeamertemplate{background}{
+  \begin{minipage}{\paperwidth}
+    \raggedleft
+    \pgfuseimage{bg}
+  \end{minipage}
+}
 % \titlegraphic{\hfill\includegraphics[height=1.5cm]{ru_old-logo.png}}
 \titlegraphic{\hfill\includegraphics[height=1cm]{ru_logo.png}}
 
